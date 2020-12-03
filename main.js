@@ -1,70 +1,18 @@
-class Voiture{
-    constructor(license, color, weight, power, tankCapacity, numberSeats) {
-        this.license = license;
-        this.color = color;
-        this.weight = weight;
-        this.power = power;
-        this.tankCapacity = tankCapacity;
-        this.numberSeats = numberSeats;
-        this.fewlQuantity = 5;
-        this.insurance = false;
-        this.boardMessage = `Bienvenue`;
-    };
+let carMikhail = new Voiture("CG169TP", "noir", 1200, 90, 50.0, 5);
+let carNissim = new Voiture("ND142FO", "vert", 800, 55, 30.0, 1);
+let carChloe = new Voiture("CS328GA", "rose", 600, 700, 40.0, 2);
+let carSanae = new Voiture("SB122DJ", "rouge", 1800, 115, 70.0, 7);
+let carGregory = new Voiture("GY007OP", "bleu nuit", 1500, 220, 60.0, 4);
 
-    set setInsurance(value) {
-        this.insurance = value;
-        this.boardMessage = `${this.boardMessage}Vous avez assuré le véhicule`;
-    };
-
-    get getBoardMessage() {
-        return this.boardMessage;
-    }
-
-    repeindre(newColor) {
-        if ((newColor === this.color)) {
-            this.boardMessage = `Le véhicule est déjà de cette couleur`;
-            return true;
-        } else {
-            this.color = newColor;
-            this.boardMessage = `Vous avez repeint le véhicul en ${this.color}`;
-            return false;
-        };
-    };
-
-    mettreEssence(addFewlQuantity) {
-        if ((addFewlQuantity + this.fewlQuantity) <= this.tankCapacity) {
-            this.fewlQuantity += addFewlQuantity;
-            this.boardMessage = `Vous avez ajoué ${this.fewlQuantity}L d'essence`;
-            return this.fewlQuantity;
-        } else {
-            this.boardMessage = `Réservoir d'essence insuffisant : opération annulée`;
-            return this.fewlQuantity;
-        };
-    };
-
-    seDeplacer(distanceTravel, averageSpeed) {
-        let fewlTrip = this.fewlConsumption(distanceTravel, averageSpeed);
-        if (this.fewlQuantity >= fewlTrip) {
-            this.boardMessage = `Trajet authorisé, ${fewlTrip}L d'essence sera consommé durant le trajet`;
-        } else {
-            this.boardMessage = `Trajet refusé, pas assez d'essence dans le réservoir`;
-        };
-    };
-
-    fewlConsumption(distanceTravel, averageSpeed) { 
-        if ((averageSpeed <= 50)) {
-            return (distanceTravel * 0.1);
-        } else if ((averageSpeed > 50) && (averageSpeed <= 90)) {
-            return (distanceTravel * 0.05);
-        } else if ((averageSpeed > 90) && (averageSpeed <= 130)) {
-            return (distanceTravel * 0.09);
-        } else {
-            return (distanceTravel * 0.12);
-        };
-    };
-
-    toString() {
-        return `Véhicule immatriculé ${this.license} d'une puissance de ${this.power} chevaux et de couleur ${this.color}`;
-    };
-};
+console.log(carMikhail.getBoardMessage);
+carMikhail.setInsurance = true;
+console.log(carMikhail.getBoardMessage);
+carMikhail.repeindre("bleu");
+console.log(carMikhail.getBoardMessage);
+console.log(carMikhail.mettreEssence(35));
+console.log(carMikhail.getBoardMessage);
+carMikhail.seDeplacer(200, 110);
+console.log(carMikhail.getBoardMessage);
+console.log(carMikhail.toString());
+console.log(carMikhail);
 
