@@ -6,20 +6,20 @@ class Voiture{
         this.power = power;
         this.tankCapacity = tankCapacity;
         this.numberSeats = numberSeats;
-        this.fewlQuantity = 5;
+        this.fuelQuantity = 5;
         this.insurance = false;
-        this.boardMessage = `Bienvenue dans le véhicule d'immatriculation ${this.license}`;
+        this.boardMessage = `Welcome to the ${this.license} registration vehicle`;
     };
 
     set setInsurance(value) {
         if (value === true) {
             this.insurance = value;
-            this.boardMessage = `Le véhicule ${this.license} est assuré`;
+            this.boardMessage = `The vehicle ${this.license} is insured`;
         } else if (value === false) {
             this.insurance = value;
-            this.boardMessage = `Le véhicule ${this.license} n'est pas assuré`;
+            this.boardMessage = `The vehicle ${this.license} is not insured`;
         } else {
-            throw `Veuillez utilisé un bouléen pour modifier l'assurance du vuhécule ${this.license}`;
+            throw `Please use true or false to change the vehicle insurance ${this.license}`;
         };
     };
 
@@ -29,44 +29,44 @@ class Voiture{
 
     repeindre(newColor) {
         if ((newColor === this.color)) {
-            this.boardMessage = `Le véhicule ${this.license} est déjà de cette couleur`;
+            this.boardMessage = `The vehicle ${this.license} is already this color`;
             return this.boardMessage;
         } else {
             this.color = newColor;
-            this.boardMessage = `Vous avez repeint le véhicule ${this.license} en ${this.color}`;
+            this.boardMessage = `You have repainted the vehicle ${this.license} in ${this.color}`;
             return this.boardMessage;
         };
     };
 
-    mettreEssence(addFewlQuantity) {
-        if (addFewlQuantity <= 0) {
-            throw `La valeur doit être strictement positif pour ajouter de l'essence au véhicule ${this.license}`;
+    mettreEssence(addfuelQuantity) {
+        if (addfuelQuantity <= 0) {
+            throw `The value must be strictly positive to add fuel to the vehicle ${this.license}`;
         };
-        if ((addFewlQuantity + this.fewlQuantity) <= this.tankCapacity) {
-            this.fewlQuantity += addFewlQuantity;
-            this.boardMessage = `Vous avez ajouté ${addFewlQuantity}L d'essence au véhicule ${this.license}`;
-            return `Il y a ${this.fewlQuantity}L d'essence dans le véhicule ${this.license}`;
+        if ((addfuelQuantity + this.fuelQuantity) <= this.tankCapacity) {
+            this.fuelQuantity += addfuelQuantity;
+            this.boardMessage = `You have added ${addfuelQuantity}L of fuel to the vehicle ${this.license}`;
+            return `There is ${this.fuelQuantity}L of fuel in the vehicle ${this.license}`;
         } else {
-            this.boardMessage = `Réservoir d'essence du véhicule ${this.license} insuffisant : opération annulée`;
-            return `Il y a ${this.fewlQuantity}L d'essence dans le véhicule ${this.license}`;
+            this.boardMessage = `Vehicle fuel tank ${this.license} insufficient : operation canceled`;
+            return `There is ${this.fuelQuantity}L of fuel in the vehicle ${this.license}`;
         };
     };
 
     seDeplacer(distanceTravel, averageSpeed) {
         if ((distanceTravel <= 0) || (averageSpeed <= 0)) {
-            throw `Vous ne pouvez pas deplacer le véhicule ${this.license} avec une vitesse moyenne ou une distance négative ou nulle`;
+            throw `You cannot move the vehicle ${this.license} with a negative or zero average speed or distance`;
         };
         if (averageSpeed >= 170) {
-            throw `Retrait de permis possible`;
+            throw `Possible permit withdrawal`;
         };
         if (!this.insurance){
-            throw `Vous ne pouvez pas déplacer le véhicule ${this.license} sans assurance`;
+            throw `You cannot move the vehicle ${this.license} without insurance`;
         };
         let fewlTrip = this.fewlConsumption(distanceTravel, averageSpeed);
-        if (this.fewlQuantity >= fewlTrip) {
-            this.boardMessage = `Trajet authorisé, ${fewlTrip}L d'essence sera consommé durant le trajet`;
+        if (this.fuelQuantity >= fewlTrip) {
+            this.boardMessage = `Authorized trip, ${fewlTrip}L of fuel will be consumed during the trip`;
         } else {
-            this.boardMessage = `Trajet refusé, pas assez d'essence dans le réservoir`;
+            this.boardMessage = `Route denied, not enough fuel in the tank`;
         };
     };
 
@@ -83,7 +83,7 @@ class Voiture{
     };
 
     toString() {
-        return `Véhicule immatriculé ${this.license} d'une puissance de ${this.power} chevaux et de couleur ${this.color}`;
+        return `Vehicle license ${this.license} with ${this.power} horsepower and color ${this.color}`;
     };
 };
 
