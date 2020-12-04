@@ -27,7 +27,7 @@ class Voiture{
         return this.boardMessage;
     }
 
-    repeindre(newColor) {
+    repainted(newColor) {
         if ((newColor === this.color)) {
             this.boardMessage = `The vehicle ${this.license} is already this color`;
             return this.boardMessage;
@@ -38,7 +38,7 @@ class Voiture{
         };
     };
 
-    mettreEssence(addfuelQuantity) {
+    addFuel(addfuelQuantity) {
         if (addfuelQuantity <= 0) {
             throw `The value must be strictly positive to add fuel to the vehicle ${this.license}`;
         };
@@ -52,25 +52,25 @@ class Voiture{
         };
     };
 
-    seDeplacer(distanceTravel, averageSpeed) {
+    toMove(distanceTravel, averageSpeed) {
         if ((distanceTravel <= 0) || (averageSpeed <= 0)) {
             throw `You cannot move the vehicle ${this.license} with a negative or zero average speed or distance`;
         };
         if (averageSpeed >= 170) {
-            throw `Possible permit withdrawal`;
+            throw `You can lose your driver's license`;
         };
         if (!this.insurance){
             throw `You cannot move the vehicle ${this.license} without insurance`;
         };
-        let fewlTrip = this.fewlConsumption(distanceTravel, averageSpeed);
-        if (this.fuelQuantity >= fewlTrip) {
-            this.boardMessage = `Authorized trip, ${fewlTrip}L of fuel will be consumed during the trip`;
+        let fuelTrip = this.fuelConsumption(distanceTravel, averageSpeed);
+        if (this.fuelQuantity >= fuelTrip) {
+            this.boardMessage = `Authorized trip, ${fuelTrip}L of fuel will be consumed during the trip`;
         } else {
             this.boardMessage = `Route denied, not enough fuel in the tank`;
         };
     };
 
-    fewlConsumption(distanceTravel, averageSpeed) { 
+    fuelConsumption(distanceTravel, averageSpeed) { 
         if ((averageSpeed <= 50)) {
             return (distanceTravel * 0.1);
         } else if ((averageSpeed > 50) && (averageSpeed <= 90)) {
