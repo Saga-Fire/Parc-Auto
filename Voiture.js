@@ -1,4 +1,9 @@
-class Voiture{
+const customerList = (sessionStorage.getItem('clients') ? sessionStorage.getItem('clients') : []);
+sessionStorage.setItem('clients', customerList);
+
+
+
+class Voiture {
     constructor(license, color, weight, power, tankCapacity, numberSeats) {
         this.license = license;
         this.color = color;
@@ -29,7 +34,7 @@ class Voiture{
 
     repainted(newColor) {
         if ((newColor === this.color)) {
-            this.boardMessage = `The vehicle ${this.license} is already this color`;
+            this.boardMessage = `The vehicle ${this.license} is already in this color`;
             return this.boardMessage;
         } else {
             this.color = newColor;
@@ -59,7 +64,7 @@ class Voiture{
         if (averageSpeed >= 170) {
             throw `You can lose your driver's license`;
         };
-        if (!this.insurance){
+        if (!this.insurance) {
             throw `You cannot move the vehicle ${this.license} without insurance`;
         };
         let fuelTrip = this.fuelConsumption(distanceTravel, averageSpeed);
@@ -70,7 +75,7 @@ class Voiture{
         };
     };
 
-    fuelConsumption(distanceTravel, averageSpeed) { 
+    fuelConsumption(distanceTravel, averageSpeed) {
         if ((averageSpeed <= 50)) {
             return (distanceTravel * 0.1);
         } else if ((averageSpeed > 50) && (averageSpeed <= 90)) {
@@ -83,7 +88,7 @@ class Voiture{
     };
 
     toString() {
-        return `Vehicle license ${this.license} with ${this.power} horsepower and color ${this.color}`;
+        return `Vehicle license ${this.license} with ${this.power} horsepower and ${this.color} color`;
     };
 };
 
