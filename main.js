@@ -15,4 +15,3 @@ carMikhail.toMove(200, 110);
 console.log(carMikhail.getBoardMessage);
 console.log(carMikhail.toString());
 console.log(carMikhail);
-
